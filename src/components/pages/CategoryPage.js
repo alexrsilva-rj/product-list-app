@@ -1,9 +1,13 @@
 // src/pages/CategoryPage.js
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories, deleteCategory } from '../features/productSlice';
+import { fetchCategories, deleteCategory, fetchProducts } from '../features/productSlice';
 import CategoryForm from '../categories/CategoryForm';
 import CategoryList from '../categories/CategoryList';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog';
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
@@ -12,7 +16,11 @@ const CategoryPage = () => {
 
   React.useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(fetchProducts());
   }, [dispatch]);
+
+  const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
+  const [categoryToDelete, setCategoryToDelete] = useState(null);
 
   const handleDelete = (categoryId) => {
     const hasProducts = products.some(product => product.category === categoryId);

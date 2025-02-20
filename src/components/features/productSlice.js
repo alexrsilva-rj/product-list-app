@@ -26,13 +26,14 @@ export const addCategory = createAsyncThunk('categories/addCategory', async (cat
   return response.data;
 });
 
-export const deleteCategory = createAsyncThunk('categories/deleteCategory', async (categoryId, { getState }) => {
+export const deleteCategory = createAsyncThunk('categories/deleteCategory', async (categoryName, { getState }) => {
   const state = getState();
-  const hasProducts = state.products.products.some(product => product.category === categoryId);
+  const hasProducts = state.products.products.some(product => product.category === categoryName);
 
   if (!hasProducts) {
+    const categoryId = state.products.categories.find(category => category.name === categoryName).id;
     await axios.delete(`http://localhost:5000/categories/${categoryId}`);
-    return categoryId;
+    return categoryName;
   } else {
     throw new Error('Cannot delete category with associated products');
   }

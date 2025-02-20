@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import ProductItem from './ProductItem';
 import ProductForm from './ProductForm';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
 
 const ProductList = () => {
   const products = useSelector((state) => state.products.products);
+  const categories = useSelector((state) => state.products.categories);
   const filter = useSelector((state) => state.products.filter);
   const filteredProducts = products.filter(product => product.category.includes(filter));
   const [editingProduct, setEditingProduct] = useState(null);
+
+  
+
+  
 
   return (
     <div>

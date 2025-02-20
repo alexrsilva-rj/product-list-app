@@ -4,13 +4,7 @@
       "id": "90f5",
       "name": "Produto 1",
       "category": "Categoria 4",
-      "price": "300"
-    },
-    {
-      "id": "61ab",
-      "name": "Produto 4",
-      "category": "Categoria 4",
-      "price": "200"
+      "price": 298.01
     },
     {
       "id": "9ad1",
@@ -40,7 +34,13 @@
       "id": "90d3",
       "name": "Produto 5",
       "category": "Categoria 3",
-      "price": "199"
+      "price": "200"
+    },
+    {
+      "id": "f50e",
+      "name": "Produto 22",
+      "category": "Categoria 2",
+      "price": 123
     }
   ],
   "categories": [
@@ -53,8 +53,12 @@
       "name": "Categoria 1"
     },
     {
-      "id": "3b17",
+      "id": "ccf5",
       "name": "Categoria 3"
+    },
+    {
+      "id": "d9f5",
+      "name": "Categoria 4"
     }
   ]
 }

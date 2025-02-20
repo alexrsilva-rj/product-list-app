@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": "90f5",
+      "name": "Produto 1",
+      "category": "Categoria 4",
+      "price": "300"
+    },
+    {
+      "id": "61ab",
+      "name": "Produto 4",
+      "category": "Categoria 4",
+      "price": "200"
+    },
+    {
+      "id": "9ad1",
+      "name": "Produto 3",
+      "category": "Categoria 3",
+      "price": "250"
+    },
+    {
+      "id": "acf4",
+      "name": "Produto 2",
+      "category": "Categoria 2",
+      "price": "52"
+    },
+    {
+      "id": "f01e",
+      "name": "Produto 5",
+      "category": "Categoria 2",
+      "price": "600"
+    },
+    {
+      "id": "61f4",
+      "name": "Produto 5",
+      "category": "Categoria 1",
+      "price": "750"
+    },
+    {
+      "id": "90d3",
+      "name": "Produto 5",
+      "category": "Categoria 3",
+      "price": "199"
+    }
+  ],
+  "categories": [
+    {
+      "id": "69b6",
+      "name": "Categoria 2"
+    },
+    {
+      "id": "3949",
+      "name": "Categoria 1"
+    },
+    {
+      "id": "3b17",
+      "name": "Categoria 3"
+    }
+  ]
+}

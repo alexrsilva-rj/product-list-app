@@ -12,7 +12,7 @@ Runs the json-server in the development mode.\
 Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 
 Endpoints:
-[http://localhost:5000/products](http://localhost:5000/products)
+[http://localhost:5000/products](http://localhost:5000/products)\
 [http://localhost:5000/categories](http://localhost:5000/categories)
 
 The page will reload when you make changes.

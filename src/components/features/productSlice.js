@@ -1,5 +1,3 @@
-
-// src/components/features/productSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -26,13 +24,14 @@ export const addCategory = createAsyncThunk('categories/addCategory', async (cat
   return response.data;
 });
 
-export const deleteCategory = createAsyncThunk('categories/deleteCategory', async (categoryId, { getState }) => {
+export const deleteCategory = createAsyncThunk('categories/deleteCategory', async (categoryName, { getState }) => {
   const state = getState();
-  const hasProducts = state.products.products.some(product => product.category === categoryId);
+  const hasProducts = state.products.products.some(product => product.category === categoryName);
 
   if (!hasProducts) {
+    const categoryId = state.products.categories.find(category => category.name === categoryName).id;
     await axios.delete(`http://localhost:5000/categories/${categoryId}`);
-    return categoryId;
+    return categoryName;
   } else {
     throw new Error('Cannot delete category with associated products');
   }
@@ -56,20 +55,6 @@ export const updateCategory = createAsyncThunk('categories/updateCategory', asyn
 
   return updatedCategory;
 });
-
-/*
-export const updateProduct = createAsyncThunk('products/updateProduct', async ({ id, name, category, price }, { dispatch }) => {
-  const updatedProduct = { id, name, category, price };
-
-  // Atualizar o produto no db.json
-  await axios.put(`http://localhost:5000/products/${id}`, updatedProduct);
-
-  // Refetch products after update
-  dispatch(fetchProducts());
-
-  return updatedProduct;
-});
-*/
 
 export const updateProduct = createAsyncThunk('products/updateProduct', async (updatedProduct) => {
   const response = await axios.put(`http://localhost:5000/products/${updatedProduct.id}`, updatedProduct);

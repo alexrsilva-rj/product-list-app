@@ -1,12 +1,13 @@
-
-// src/components/pages/ProductPage.js
-
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, fetchCategories, deleteProduct , setFilter} from '../features/productSlice';
+import { fetchProducts, fetchCategories, deleteProduct , } from '../features/productSlice';
 import ProductForm from '../products/ProductForm';
 import ProductEditForm from '../products/ProductEditForm';
-import React, { useState, useEffect } from 'react';
-import Filter from '../filter/Filter'
+import React, { useState, useEffect, useRef } from 'react';
+import Filter from '../filter/Filter';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
 
 
 const ProductPage = () => {
@@ -15,14 +16,22 @@ const ProductPage = () => {
   const categories = useSelector((state) => state.products.categories);
   const [editingProductId, setEditingProductId] = useState(null);
   const filter = useSelector((state) => state.products.filter);
+  const [isFormVisible, setFormVisible] = useState(false);
+  const toast = useRef(null);
 
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  const toggleForm = () => {
+    setFormVisible(!isFormVisible);
+  };
+
   const handleDelete = (productId) => {
-    dispatch(deleteProduct(productId));
+    dispatch(deleteProduct(productId)).then(() => {
+      toast.current.show({ severity: 'success', summary: 'Success', detail: 'Product deleted' });
+    });
   };
 
   const handleEditComplete = () => {
@@ -33,50 +42,41 @@ const ProductPage = () => {
     setEditingProductId(product.id);
   };
 
-
-  const handleFilterChange = (e) => {
-    dispatch(setFilter(e.target.value));
-  };
   
-  const filteredProducts = filter ? products.filter(product => product.category === filter) : products;
+  const filteredProducts = (( filter === '') || (filter.label==='Todos')) ?  products : products.filter(product =>  product.category === filter) ;
+  
+
 
   return (
     <div>
       <h1>Produtos</h1>
-      <ProductForm categories={categories} />
-      <Filter handleFilterChange={handleFilterChange} />
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Preço</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredProducts.map(product => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>${product.price}</td>
-              <td>
-                <button onClick={() => handleEdit(product)}>Editar</button>
-                <button onClick={() => handleDelete(product.id)}>Apagar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Button label="Adicionar Produto" icon="pi pi-plus" onClick={toggleForm} />
+      {isFormVisible && <ProductForm categories={categories} />}
+      <Filter />
+      <DataTable value={filteredProducts} paginator rows={10} sortMode="multiple">
+        <Column field="name" header="Nome" sortable></Column>
+        <Column field="category" header="Categoria" sortable></Column>
+        <Column field="price" header="Preço" sortable></Column>
+        <Column
+          body={(rowData) => (
+            <div>
+              <Button label="Editar" icon="pi pi-pencil" onClick={() => handleEdit(rowData)} />
+              <Button label="Apagar" icon="pi pi-trash" onClick={() => handleDelete(rowData.id)} className="p-button-danger" />
+            </div>
+          )}
+          header="Ações"
+        ></Column>
+      </DataTable>
       {editingProductId && (
         <ProductEditForm
-          product={products.find(p => p.id === editingProductId)}
+          product={products.find((p) => p.id === editingProductId)}
           categories={categories}
           onEditComplete={handleEditComplete}
         />
       )}
+      <Toast ref={toast} />
     </div>
   );
+ 
 };
-
 export default ProductPage;

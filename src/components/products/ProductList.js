@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import ProductItem from './ProductItem';
 import ProductForm from './ProductForm';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Button } from 'primereact/button';
 
 const ProductList = () => {
   const products = useSelector((state) => state.products.products);
@@ -14,9 +11,6 @@ const ProductList = () => {
   const [editingProduct, setEditingProduct] = useState(null);
 
   
-
-  
-
   return (
     <div>
       {filteredProducts.map(product => (

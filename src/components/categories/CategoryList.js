@@ -1,4 +1,3 @@
-// src/components/CategoryList.js
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCategory } from '../features/productSlice';
@@ -27,20 +26,20 @@ const CategoryList = () => {
     setEditingCategoryId(null);
   };
 
-  const actionBodyTemplate = (rowData) => {
-    return (
-      <div>
-        <Button label="Edit" onClick={() => setEditingCategoryId(rowData.id)} className="p-button-text" />
-        <Button label="Delete" onClick={() => handleDelete(rowData.name)} className="p-button-text p-button-danger" />
-      </div>
-    );
-  };
+  
 
   return (
     <div>
-      <DataTable value={categories} paginator rows={10}>
-        <Column field="name" header="Nome da Categoria"></Column>
-        <Column body={actionBodyTemplate} header="Ações"></Column>
+   <DataTable value={categories} paginator rows={10} sortMode="multiple">
+        <Column field="name" header="Nome da Categoria" sortable></Column>
+        <Column body={(rowData) => (
+                      <div>
+                        <Button label="Editar" icon="pi pi-pencil" onClick={() => setEditingCategoryId(rowData.id)} />
+                        <Button label="Apagar" icon="pi pi-trash" onClick={() => handleDelete(rowData.name)} className="p-button-danger" />
+                      </div>
+                    )}
+
+        header="Ações"></Column>
       </DataTable>
       {error && <p>{error}</p>}
       {categories.map(category => (

@@ -13,22 +13,9 @@ const Filter = () => {
   };
 
   const categoryOptions = [{ label: 'Todos', value: '' }, ...categories.map((category) => ({ label: category.name, value: category.name }))];
-  //const categoryOptions = categories.map(category => ({ label: category.name, value: category.name }));
 
   return (
     <Dropdown value={filter} options={categoryOptions} onChange={handleFilterChange} placeholder="Selecione uma Categoria" />
   );
-/*
-  return (
-    <Dropdown 
-      value={null}
-      options={categoryOptions}
-      onChange={handleFilterChange}
-      placeholder="Selecione uma Categoria"
-    />
-  );
-
-  */
 };
-
 export default Filter;

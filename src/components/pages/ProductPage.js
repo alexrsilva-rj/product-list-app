@@ -1,6 +1,5 @@
-// src/components/pages/ProductPage.js
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, fetchCategories, deleteProduct , setFilter} from '../features/productSlice';
+import { fetchProducts, fetchCategories, deleteProduct , } from '../features/productSlice';
 import ProductForm from '../products/ProductForm';
 import ProductEditForm from '../products/ProductEditForm';
 import React, { useState, useEffect, useRef } from 'react';
@@ -47,21 +46,22 @@ const ProductPage = () => {
   const filteredProducts = (( filter === '') || (filter.label==='Todos')) ?  products : products.filter(product =>  product.category === filter) ;
   
 
+
   return (
     <div>
       <h1>Produtos</h1>
-      <Button label="Add Product" icon="pi pi-plus" onClick={toggleForm} />
+      <Button label="Adicionar Produto" icon="pi pi-plus" onClick={toggleForm} />
       {isFormVisible && <ProductForm categories={categories} />}
       <Filter />
-      <DataTable value={filteredProducts} paginator rows={10}>
-        <Column field="name" header="Nome"></Column>
-        <Column field="category" header="Categoria"></Column>
-        <Column field="price" header="Preço"></Column>
+      <DataTable value={filteredProducts} paginator rows={10} sortMode="multiple">
+        <Column field="name" header="Nome" sortable></Column>
+        <Column field="category" header="Categoria" sortable></Column>
+        <Column field="price" header="Preço" sortable></Column>
         <Column
           body={(rowData) => (
             <div>
-              <Button label="Edit" icon="pi pi-pencil" onClick={() => handleEdit(rowData)} />
-              <Button label="Delete" icon="pi pi-trash" onClick={() => handleDelete(rowData.id)} className="p-button-danger" />
+              <Button label="Editar" icon="pi pi-pencil" onClick={() => handleEdit(rowData)} />
+              <Button label="Apagar" icon="pi pi-trash" onClick={() => handleDelete(rowData.id)} className="p-button-danger" />
             </div>
           )}
           header="Ações"
@@ -77,45 +77,6 @@ const ProductPage = () => {
       <Toast ref={toast} />
     </div>
   );
-  /*
-  
-  return (
-    <div>
-      <h1>Produtos</h1>
-      <ProductForm categories={categories} />
-      <Filter handleFilterChange={handleFilterChange} />
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Preço</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredProducts.map(product => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>${product.price}</td>
-              <td>
-                <button onClick={() => handleEdit(product)}>Editar</button>
-                <button onClick={() => handleDelete(product.id)}>Apagar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {editingProductId && (
-        <ProductEditForm
-          product={products.find(p => p.id === editingProductId)}
-          categories={categories}
-          onEditComplete={handleEditComplete}
-        />
-      )}
-    </div>
-  );
-  */
+ 
 };
 export default ProductPage;

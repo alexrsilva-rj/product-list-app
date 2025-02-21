@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from '../features/productSlice';
@@ -45,21 +44,7 @@ const ProductForm = ({ product, categories, setEditingProduct }) => {
       <Button type="submit" label={product ? 'Edit' : 'Add'} icon="pi pi-check" />
     </form>
   );
-  /*
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome do Produto" required />
-      <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-        {categories.map((cat) => (
-          <option key={cat.id} value={cat.name}>{cat.name}</option>
-        ))}
-      </select>
-      <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Preço" required min="0" />
-      <button type="submit">{product ? 'Edit' : 'Add'} Product</button>
-    </form>
-  );
-  */
 };
 
 export default ProductForm;

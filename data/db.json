@@ -21,7 +21,7 @@
     {
       "id": "f01e",
       "name": "Produto 5",
-      "category": "Categoria 2",
+      "category": "Categoria 5",
       "price": "600"
     },
     {
@@ -33,20 +33,20 @@
     {
       "id": "90d3",
       "name": "Produto 5",
-      "category": "Categoria 3",
+      "category": "Categoria 5",
       "price": "200"
     },
     {
       "id": "f50e",
-      "name": "Produto 22",
-      "category": "Categoria 2",
+      "name": "Produto 222",
+      "category": "Categoria 4",
       "price": 123
     }
   ],
   "categories": [
     {
       "id": "69b6",
-      "name": "Categoria 2"
+      "name": "Categoria 5"
     },
     {
       "id": "3949",
@@ -59,6 +59,14 @@
     {
       "id": "d9f5",
       "name": "Categoria 4"
+    },
+    {
+      "id": "5d8d",
+      "name": "Categoria 6"
+    },
+    {
+      "id": "036f",
+      "name": "Categoria 2"
     }
   ]
 }

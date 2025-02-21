@@ -1,4 +1,3 @@
-// src/components/categories/CategoryEditForm.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCategory } from '../features/productSlice';

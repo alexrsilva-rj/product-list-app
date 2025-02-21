@@ -1,5 +1,3 @@
-
-// src/components/features/productSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -57,20 +55,6 @@ export const updateCategory = createAsyncThunk('categories/updateCategory', asyn
 
   return updatedCategory;
 });
-
-/*
-export const updateProduct = createAsyncThunk('products/updateProduct', async ({ id, name, category, price }, { dispatch }) => {
-  const updatedProduct = { id, name, category, price };
-
-  // Atualizar o produto no db.json
-  await axios.put(`http://localhost:5000/products/${id}`, updatedProduct);
-
-  // Refetch products after update
-  dispatch(fetchProducts());
-
-  return updatedProduct;
-});
-*/
 
 export const updateProduct = createAsyncThunk('products/updateProduct', async (updatedProduct) => {
   const response = await axios.put(`http://localhost:5000/products/${updatedProduct.id}`, updatedProduct);

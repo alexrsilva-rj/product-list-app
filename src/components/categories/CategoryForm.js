@@ -1,15 +1,13 @@
-// src/components/CategoryForm.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCategory } from '../features/productSlice';
-import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import { Messages } from 'primereact/messages';
+import { InputText } from 'primereact/inputtext';
 
 const CategoryForm = () => {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
-  const [messages, setMessages] = useState(null);
+  const [ setMessages] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,14 +18,17 @@ const CategoryForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Category Name"
-        required
-      />
-      <button type="submit">Add Category</button>
+
+       <InputText 
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Nome da Categoria"
+                required
+              />
+      
+      <Button label='Adicionar Categoria'  icon="pi pi-plus"/> 
     </form>
   );
 };

@@ -6,6 +6,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm run start-api`
+
+Runs the json-server in the development mode.\
+Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
+
+Endpoints:
+[http://localhost:5000/products](http://localhost:5000/products)
+[http://localhost:5000/categories](http://localhost:5000/categories)
+
+The page will reload when you make changes.
+
 ### `npm start`
 
 Runs the app in the development mode.\
